@@ -10,7 +10,7 @@ namespace Core
         [SerializeField] private int height;
         [SerializeField] private GameObject[] objects;
     
-        private GameObject[,] _gridObjects;
+        private BoardItem[,] _gridObjects;
         
         private void Start()
         {
@@ -32,7 +32,7 @@ namespace Core
         private void GenerateGrid()
         {
             // Initialize 2D array
-            _gridObjects = new GameObject[width, height];
+            _gridObjects = new BoardItem[width, height];
         
             // Loop through every column and row
             for (int x = 0; x < width; x++)
@@ -58,8 +58,12 @@ namespace Core
                     // Adjust the sorting
                     newObject.GetComponent<SpriteRenderer>().sortingOrder = y;
                 
+                    // Get the BoardItem component from newObject and initialize it
+                    BoardItem item = newObject.GetComponent<BoardItem>();
+                    item.Initialize(x, y);
+                    
                     // Fill the array
-                    _gridObjects[x, y] = newObject;
+                    _gridObjects[x, y] = item;
                 }
             }
         }
