@@ -62,8 +62,6 @@ namespace Core
                     _gridObjects[x, y] = newObject;
                 }
             }
-        
         }
     }
-
 }
