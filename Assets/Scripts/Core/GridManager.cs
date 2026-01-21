@@ -6,11 +6,26 @@ namespace Core
 {
     public class GridManager : MonoBehaviour
     {
+        // Singleton Design Pattern
+        public static GridManager Instance { get; private set; }
+        
         [SerializeField] private int width;
         [SerializeField] private int height;
         [SerializeField] private GameObject[] objects;
     
         private BoardItem[,] _gridObjects;
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(this);
+            }
+            else
+            {
+                Instance = this;
+            }
+        }
         
         private void Start()
         {
@@ -65,6 +80,19 @@ namespace Core
                     // Fill the array
                     _gridObjects[x, y] = item;
                 }
+            }
+        }
+
+        public void Process(int x, int y)
+        {
+            BoardItem clickedItem = _gridObjects[x, y];
+
+            if (clickedItem.Type == Enums.ItemType.CubeRed ||
+                clickedItem.Type == Enums.ItemType.CubeYellow ||
+                clickedItem.Type == Enums.ItemType.CubeGreen ||
+                clickedItem.Type == Enums.ItemType.CubeBlue)
+            {
+                Debug.Log($"Processing Match logic for {clickedItem.Type}");
             }
         }
     }

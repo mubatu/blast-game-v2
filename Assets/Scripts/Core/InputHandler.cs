@@ -24,7 +24,7 @@ namespace Core
                 if (hit.collider.gameObject.TryGetComponent(out BoardItem item))
                 {
                     Debug.Log($"Clicked Cube at: {item.X}, {item.Y}");
-                    
+                    GridManager.Instance.Process(item.X, item.Y);
                 }
             }
         }
