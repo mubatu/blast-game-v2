@@ -7,11 +7,11 @@ namespace Core
     {
         private Camera _mainCamera;
 
-        private void Start()
+        private void Awake()
         {
             _mainCamera = Camera.main;
         }
-        public void Update()
+        private void Update()
         {
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -23,8 +23,8 @@ namespace Core
                 
                 if (hit.collider.gameObject.TryGetComponent(out BoardItem item))
                 {
-                    Debug.Log($"Clicked Cube at: {item.X}, {item.Y}");
-                    GridManager.Instance.Process(item.X, item.Y);
+                    Debug.Log($"Clicked item at: {item.X}, {item.Y}");
+                    GameEvents.ItemClicked(item.X, item.Y);
                 }
             }
         }

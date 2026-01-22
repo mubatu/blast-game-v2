@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18779ae2d2ad4ec0b5967fac8dbea04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.InputHandler
+  _gridManager: {fileID: 2139284645}
 --- !u!4 &181243169
 Transform:
   m_ObjectHideFlags: 0
